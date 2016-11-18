@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/tjclement/talk-like/issues"
   },
-  "homepage": "https://github.com/tjclement/talk-like#readme"
+  "homepage": "https://github.com/tjclement/talk-like#readme",
+  "dependencies": {
+    "lodash": "^4.17.2"
+  }
 }
