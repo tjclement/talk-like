@@ -4,14 +4,15 @@
 
 let _ = require('lodash');
 
-let file = './data/gandhi_quotes.js';
+let file = './data/trump_tweets.js';
 let wordsToGenerate = 30;
 
 let {markovChain, extractWords} = require('./markov_dataset_parser.js');
 let {createSentence} = require('./sentence-generator.js');
 
-let words = extractWords(require(file));
-let chain = markovChain(words);
+let lines = require(file);
+let words = extractWords(lines);
+let chain = markovChain(lines);
 
 let capitalWords = _.filter(words, (word) => {
     return word && _.inRange(word.charCodeAt(0), 65, 91);

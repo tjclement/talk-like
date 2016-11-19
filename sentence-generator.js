@@ -2,6 +2,7 @@
  * Created by Janssens on 18-11-2016.
  */
 
+let _ = require('lodash');
 let example_markov_chain = {
     we: {
         should: 1.0
@@ -45,13 +46,25 @@ function chooseWord(words){
     }
 }
 
+function getRelatedWords(word, markov_chain) {
+    let related = markov_chain[word];
+    if(!related) {
+        let capitalWords = _.filter(Object.keys(markov_chain), (word) => {
+            return word && _.inRange(word.charCodeAt(0), 65, 91);
+        });
+        related = _.sample(capitalWords);
+    }
+    return related;
+}
+
 module.exports.createSentence = function(markov_chain, woord, aantal) {
     /*Hier hebben we een woord ontvangen en een verzoek om een aantal woorden terug*/
     let antwoord = [];
     antwoord.push(woord);
     for(let i = 0; i < aantal; i++) {
         let laatste_woord = antwoord[antwoord.length - 1];
-        let nieuw_woord = chooseWord(markov_chain[laatste_woord]);
+        let wordsToChooseFrom = getRelatedWords(laatste_woord, markov_chain);
+        let nieuw_woord = chooseWord(wordsToChooseFrom);
         antwoord.push(nieuw_woord);
     }
     antwoord.shift();
