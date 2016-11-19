@@ -5,19 +5,7 @@
 let _ = require('lodash');
 
 module.exports.extractWords = function (lines) {
-    let totalText = lines.join(' ');
-
-    /* Prepend punctuation characters with spaces, so they count as words in the Markov chain.  */
-    totalText = _.replace(totalText, /:/g, ' :');
-    totalText = _.replace(totalText, /!/g, ' !');
-    totalText = _.replace(totalText, /\?/g, ' ?');
-    totalText = _.replace(totalText, /,/g, ' ,');
-    totalText = _.replace(totalText, /\./g, ' .');
-    totalText = _.replace(totalText, /\. \. \./g, '...');
-    totalText = _.replace(totalText, /\. \./g, '..');
-
-    return totalText.split(' ');
-
+    return lines.join(' ').split(' ');
 };
 
 module.exports.markovChain = function(words) {
