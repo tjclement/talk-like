@@ -4,7 +4,8 @@
 
 let _ = require('lodash');
 
-let file = './data/trump_debate_data.js';
+let file = './data/gandhi_quotes.js';
+let wordsToGenerate = 30;
 
 let {markovChain, extractWords} = require('./markov_dataset_parser.js');
 let {createSentence} = require('./sentence-generator.js');
@@ -17,5 +18,5 @@ let capitalWords = _.filter(words, (word) => {
 });
 let startWord = _.sample(capitalWords);
 for(let i = 0; i < 10; i++) {
-    console.log(startWord, createSentence(chain, startWord, 12).join(' '));
+    console.log(startWord, createSentence(chain, startWord, wordsToGenerate).join(' '));
 }
