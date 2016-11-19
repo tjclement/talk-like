@@ -13,7 +13,8 @@ module.exports.markovChain = function(lines) {
 
     /* TODO: determine whether we want case insensitivity for words */
 
-    for(let line of lines) {
+    for(let index in lines) {
+        let line = lines[index];
         let words = line.split(' ');
         /* Count all next word occurrences for each individual word in the words list. */
         for (let index = 0; index < words.length; index++) {
